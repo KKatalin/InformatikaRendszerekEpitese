@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+            <form [formGroup]="libraryStockForm">
+                <!-- <input type="text" class="form-control" id="id" formControlName="id" > -->
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" formControlName="title">
+                <div class="text-danger" *ngIf="title!.invalid && (title!.dirty || title!.touched)">
+                    <small>Title is required.</small>
+                </div>
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" formControlName="author">
+                <label for="serialNumber">SerialNumber</label>
+                <input type="text" class="form-control" id="serialNumber" formControlName="serialNumber">
+                <div class="text-danger" *ngIf="serialNumber!.invalid && (serialNumber!.dirty || serialNumber!.touched)">
+                    <small>Serial Number should be under 9999999999999.</small>
+                </div>
+                <label for="imgUrl">Image URL</label>
+                <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl">
+                <div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
+                    <small>URL should be a valid URL.</small>
+                </div>
+                <label for="borrower">Borrower</label>
+                <select class="form-control" name="borrower" id="borrower" formControlName="borrower"
+                    [compareWith]="compareUsers">
+                    <option [ngValue]="user" *ngFor="let user of users">{{ user.firstName }} {{ user.lastName }}</option>
+                </select>
+                 <label for="categories">Categories</label>
+                <select class="form-control" name="categories" id="categories" multiple formControlName="categories"
+                    [compareWith]="compareCategories">
+                    <option [ngValue]="category" *ngFor="let category of categories">{{ category.title }}</option>
+                </select>
+                <label for="status">Status</label>
+                <input type="text" class="form-control" id="status" formControlName="status">
+                <button style="background-color:orange" class="btn btn-primary mt-2" (click)="addLibraryStock()" [disabled]="libraryStockForm.invalid">Save library Stock</button>
+            </form>
+        </div>
+    </div>
+    
+</div>

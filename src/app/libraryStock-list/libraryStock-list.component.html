@@ -1,0 +1,23 @@
+<body style="background-color:rgb(230, 211, 176);">
+
+<div class="row">
+    <div class="col-7">
+        <input type="text" placeholder="Search..." class="form-control" [(ngModel)]="searchQuery">
+    </div>
+    <div class="col-2">
+        <button style="background-color:orange" class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4>libraryStock</h4>
+        <div class="row">
+            <div class="col-6" *ngFor="let p of libraryStock">
+                <app-libraryStock [libraryStock]="p"></app-libraryStock>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

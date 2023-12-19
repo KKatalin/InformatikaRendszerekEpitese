@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-3">
+        <img src={{libraryStock.imgUrl}} alt="nope" style="width:100%">
+    </div>
+    <div class="col-9">
+        <h5> {{libraryStock.title}}
+        <span class="badge" style="background: blue">{{libraryStock.serialNumber}}</span>
+        <button class="btn btn-sm btn-primary" (click)="navigateToLibraryStockForm(libraryStock.id)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteLibraryStock(libraryStock.id)">Del</button>
+    </h5>
+        <p>
+            <span class="badge bg-secondary" *ngFor="let category of libraryStock.categories">{{ category.title }}</span>
+        </p>
+        <p *ngIf="libraryStock.borrower">Borrower: {{libraryStock.borrower.firstName}} {{libraryStock.borrower.lastName}}</p>
+        <p>{{libraryStock.author}}</p>
+    </div>
+</div>

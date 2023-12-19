@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{ errorMessage }}
+            <small>Failed to add the borrower. Some of the data is incorrect.</small>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="successMessage">
+            {{ successMessage }}
+            <small>Borrower Added succesfully.</small>
+        </div>
+        <form [formGroup]="userForm">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <label for="idCardNumber">Identity Card Number</label>
+            <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber">
+            <div class="text-danger" *ngIf="idCardNumber!.invalid && (idCardNumber!.dirty || idCardNumber!.touched)">
+                <small>ID Card Number should be under 99999999.</small>
+            </div>
+            <label for="adress">Adress</label>
+            <input type="text" class="form-control" id="adress" formControlName="adress">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone">
+            <button style="background-color:orange" class="btn btn-primary mt-2" (click)="createUser()">
+                Save user
+            </button>
+        </form>
+    </div>
+</div>
